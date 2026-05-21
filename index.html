@@ -26,6 +26,7 @@
 
     <!-- =========================================================
          AUTH GATE — Acesso restrito ao documento
+         (Estilo do login Mises Pay: tema claro, card centralizado)
     ========================================================= -->
     <div
       id="auth-gate"
@@ -34,54 +35,64 @@
       aria-modal="true"
       aria-labelledby="auth-title"
     >
-      <form id="auth-form" class="jv-auth-card" autocomplete="on" novalidate>
-        <div class="jv-auth-brand">
-          <img
-            src="./assets/mises-logo.png"
-            alt="Mises Pagamentos"
-            width="1563"
-            height="219"
-          />
-        </div>
+      <header class="jv-auth-topbar">
+        <img
+          class="jv-auth-topbar-logo"
+          src="./assets/mises-logo.png"
+          alt="Mises Pagamentos"
+          width="1563"
+          height="219"
+        />
+      </header>
 
-        <span class="ds-badge ds-badge-invert jv-auth-badge">Confidencial</span>
+      <main class="jv-auth-main">
+        <form id="auth-form" class="jv-auth-card" autocomplete="on" novalidate>
+          <div class="jv-auth-card-head">
+            <span class="jv-auth-badge">Confidencial</span>
+            <h1 id="auth-title" class="jv-auth-title">Acesso ao documento</h1>
+          </div>
 
-        <div class="jv-auth-fields">
-          <label class="jv-auth-field" for="auth-email">
-            <span class="jv-auth-label">E-mail</span>
-            <input
-              type="email"
-              id="auth-email"
-              name="username"
-              required
-              autocomplete="username"
-              spellcheck="false"
-              autocapitalize="off"
-              inputmode="email"
-            />
-          </label>
+          <div class="jv-auth-fields">
+            <label class="jv-auth-field" for="auth-email">
+              <span class="jv-auth-label">E-mail</span>
+              <input
+                type="email"
+                id="auth-email"
+                name="username"
+                required
+                autocomplete="username"
+                spellcheck="false"
+                autocapitalize="off"
+                inputmode="email"
+              />
+            </label>
 
-          <label class="jv-auth-field" for="auth-password">
-            <span class="jv-auth-label">Senha</span>
-            <input
-              type="password"
-              id="auth-password"
-              name="password"
-              required
-              autocomplete="current-password"
-            />
-          </label>
-        </div>
+            <label class="jv-auth-field" for="auth-password">
+              <span class="jv-auth-label">Senha</span>
+              <input
+                type="password"
+                id="auth-password"
+                name="password"
+                required
+                autocomplete="current-password"
+              />
+            </label>
+          </div>
 
-        <div id="auth-error" class="jv-auth-error" hidden role="alert">
-          Credenciais inválidas.
-        </div>
+          <div id="auth-error" class="jv-auth-error" hidden role="alert">
+            Credenciais inválidas.
+          </div>
 
-        <button type="submit" class="jv-auth-submit" id="auth-submit">
-          <span class="jv-auth-submit-label">Acessar</span>
-          <span class="jv-auth-submit-spinner" aria-hidden="true"></span>
-        </button>
-      </form>
+          <button type="submit" class="jv-auth-submit" id="auth-submit">
+            <span class="jv-auth-submit-label">Entrar</span>
+            <span class="jv-auth-submit-spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+      </main>
+
+      <footer class="jv-auth-footer">
+        © <span id="auth-year">2026</span> Mises Pagamentos. Joint Venture Intention · Documento confidencial.
+      </footer>
     </div>
 
     <main id="main" hidden>

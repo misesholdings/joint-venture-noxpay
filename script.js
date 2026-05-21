@@ -61,6 +61,11 @@
   function initAuthGate() {
     const gate = document.getElementById("auth-gate");
     const form = document.getElementById("auth-form");
+
+    // Fill current year in the auth footer
+    const yearEl = document.getElementById("auth-year");
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
     if (!gate || !form) {
       // No gate in DOM (e.g., print fallback) — show app.
       unlockApp();
