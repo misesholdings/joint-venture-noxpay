@@ -2587,8 +2587,13 @@ body.jv-is-locked {
    Padrão Mises: card claro, tipografia limpa, blackout sutil no backdrop.
    ============================================================================ */
 
+html.jv-conf-open,
 body.jv-conf-open {
   overflow: hidden;
+}
+/* Compensar a barra de rolagem para não causar shift de layout */
+body.jv-conf-open {
+  scrollbar-gutter: stable;
 }
 
 .jv-conf-notice {
@@ -2599,7 +2604,8 @@ body.jv-conf-open {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  overflow: auto;
+  overflow: hidden;
+  overscroll-behavior: contain;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -2629,6 +2635,10 @@ body.jv-conf-open {
   z-index: 1;
   width: 100%;
   max-width: 480px;
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: #ffffff;
   border: 1px solid #ececec;
   border-radius: 14px;

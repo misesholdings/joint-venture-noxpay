@@ -86,6 +86,7 @@
     const denyBtn = document.getElementById("conf-notice-deny");
     if (!notice || !acceptBtn || !denyBtn) return;
 
+    document.documentElement.classList.add("jv-conf-open");
     document.body.classList.add("jv-conf-open");
     notice.hidden = false;
 
@@ -98,6 +99,7 @@
 
     function close() {
       notice.hidden = true;
+      document.documentElement.classList.remove("jv-conf-open");
       document.body.classList.remove("jv-conf-open");
       window.removeEventListener("keydown", onKey);
       acceptBtn.removeEventListener("click", onAccept);
