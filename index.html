@@ -95,6 +95,58 @@
       </footer>
     </div>
 
+    <!-- =========================================================
+         CONFIDENTIALITY NOTICE — Modal pós-login (1x por sessão)
+    ========================================================= -->
+    <div
+      id="conf-notice"
+      class="jv-conf-notice"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="conf-notice-title"
+      aria-describedby="conf-notice-body"
+      hidden
+    >
+      <div class="jv-conf-notice-backdrop" aria-hidden="true"></div>
+      <div class="jv-conf-notice-card" role="document">
+        <div class="jv-conf-notice-head">
+          <span class="jv-conf-notice-badge">Confidencial · NDA</span>
+          <h2 id="conf-notice-title" class="jv-conf-notice-title">
+            Informações sensíveis
+          </h2>
+        </div>
+
+        <div id="conf-notice-body" class="jv-conf-notice-body">
+          <p>
+            Este documento contém dados financeiros, operacionais e estratégicos da
+            <strong>Mises Pagamentos LTDA</strong>, destinados exclusivamente à apreciação
+            da <strong>NoxPay</strong> no contexto desta intenção de Joint Venture.
+          </p>
+
+          <ul class="jv-conf-notice-rules">
+            <li><strong>Não</strong> exporte, baixe ou imprima este documento.</li>
+            <li><strong>Não</strong> capture telas, fotografe ou grave o conteúdo.</li>
+            <li><strong>Não</strong> compartilhe, encaminhe ou reproduza com terceiros.</li>
+            <li>Trate todas as informações como confidenciais sob <strong>NDA</strong>.</li>
+          </ul>
+
+          <p class="jv-conf-notice-warn">
+            A violação destes termos pode acarretar responsabilidade civil e criminal
+            nos termos da legislação brasileira aplicável.
+          </p>
+        </div>
+
+        <div class="jv-conf-notice-actions">
+          <button type="button" class="jv-conf-notice-deny" id="conf-notice-deny">
+            Recusar e sair
+          </button>
+          <button type="button" class="jv-conf-notice-accept" id="conf-notice-accept">
+            Aceito e prossigo
+          </button>
+        </div>
+      </div>
+    </div>
+
     <main id="main" hidden>
       <!-- =========================================================
            2. HERO / CAPA

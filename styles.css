@@ -2581,3 +2581,231 @@ body.jv-is-locked {
   body.jv-is-locked { overflow: visible !important; }
   main[hidden] { display: block !important; }
 }
+
+/* ============================================================================
+   CONFIDENTIALITY NOTICE — Modal pós-login (NDA)
+   Padrão Mises: card claro, tipografia limpa, blackout sutil no backdrop.
+   ============================================================================ */
+
+body.jv-conf-open {
+  overflow: hidden;
+}
+
+.jv-conf-notice {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: auto;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #111111;
+  animation: jvConfFade 200ms ease-out both;
+}
+
+.jv-conf-notice[hidden] {
+  display: none !important;
+}
+
+@keyframes jvConfFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.jv-conf-notice-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 11, 0.55);
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+}
+
+.jv-conf-notice-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  padding: 32px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.02),
+    0 24px 48px -16px rgba(0, 0, 0, 0.25),
+    0 8px 20px -8px rgba(0, 0, 0, 0.1);
+  animation: jvConfIn 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes jvConfIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.jv-conf-notice-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.jv-conf-notice-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  background: #111111;
+  color: #ffffff;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+.jv-conf-notice-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #111111;
+  line-height: 1.25;
+}
+
+.jv-conf-notice-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: #333333;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.jv-conf-notice-body p {
+  margin: 0;
+}
+
+.jv-conf-notice-body strong {
+  color: #111111;
+  font-weight: 600;
+}
+
+.jv-conf-notice-rules {
+  margin: 0;
+  padding: 14px 16px;
+  list-style: none;
+  background: #f7f7f6;
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.jv-conf-notice-rules li {
+  position: relative;
+  padding-left: 18px;
+  color: #2a2a2a;
+}
+
+.jv-conf-notice-rules li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: #111111;
+}
+
+.jv-conf-notice-warn {
+  margin: 0;
+  font-size: 12px;
+  color: #6b6b6b;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.jv-conf-notice-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.jv-conf-notice-deny,
+.jv-conf-notice-accept {
+  flex: 1 1 auto;
+  min-width: 140px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease, transform 120ms ease;
+}
+
+.jv-conf-notice-deny {
+  background: #ffffff;
+  color: #444444;
+  border: 1px solid #e0e0e0;
+}
+.jv-conf-notice-deny:hover {
+  background: #f5f5f5;
+  border-color: #cfcfcf;
+}
+.jv-conf-notice-deny:active {
+  transform: translateY(1px);
+}
+.jv-conf-notice-deny:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 3px;
+}
+
+.jv-conf-notice-accept {
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
+}
+.jv-conf-notice-accept:hover {
+  background: #000000;
+}
+.jv-conf-notice-accept:active {
+  transform: translateY(1px);
+}
+.jv-conf-notice-accept:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .jv-conf-notice-card {
+    padding: 28px 22px 22px;
+    border-radius: 12px;
+  }
+  .jv-conf-notice-title {
+    font-size: 19px;
+  }
+  .jv-conf-notice-actions {
+    flex-direction: column-reverse;
+  }
+  .jv-conf-notice-deny,
+  .jv-conf-notice-accept {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+
+/* Print: hide modal so PDF export (when allowed) won't include it */
+@media print {
+  .jv-conf-notice { display: none !important; }
+  body.jv-conf-open { overflow: visible !important; }
+}

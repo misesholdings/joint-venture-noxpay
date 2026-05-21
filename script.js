@@ -23,6 +23,7 @@
   const AUTH_USER = "jp@misespay.com";
   // SHA-256 of the password (computed at build time).
   const AUTH_HASH = "03eaab29bef87bc27cfbdf94016d2af0bbc5924b79fd63a7fa2d6703fa63f168";
+  const CONF_ACK_KEY = "jv-conf-ack";
 
   async function sha256Hex(input) {
     const data = new TextEncoder().encode(input);
@@ -56,6 +57,81 @@
     // Re-trigger any IntersectionObservers that may have been registered
     // before main was visible.
     window.dispatchEvent(new Event("jv:unlocked"));
+    // Show the confidentiality notice if not yet acknowledged this session.
+    showConfidentialityNoticeIfNeeded();
+  }
+
+  /* ---------------------------------------------------------------------------
+   * Confidentiality notice (post-login NDA acknowledgement)
+   * -------------------------------------------------------------------------*/
+  function isConfAcked() {
+    try {
+      return sessionStorage.getItem(CONF_ACK_KEY) === "1";
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function persistConfAck() {
+    try {
+      sessionStorage.setItem(CONF_ACK_KEY, "1");
+    } catch (_) {}
+  }
+
+  function showConfidentialityNoticeIfNeeded() {
+    if (isConfAcked()) return;
+
+    const notice = document.getElementById("conf-notice");
+    const acceptBtn = document.getElementById("conf-notice-accept");
+    const denyBtn = document.getElementById("conf-notice-deny");
+    if (!notice || !acceptBtn || !denyBtn) return;
+
+    document.body.classList.add("jv-conf-open");
+    notice.hidden = false;
+
+    // Focus the primary action for keyboard users.
+    try {
+      acceptBtn.focus({ preventScroll: true });
+    } catch (_) {
+      acceptBtn.focus();
+    }
+
+    function close() {
+      notice.hidden = true;
+      document.body.classList.remove("jv-conf-open");
+      window.removeEventListener("keydown", onKey);
+      acceptBtn.removeEventListener("click", onAccept);
+      denyBtn.removeEventListener("click", onDeny);
+    }
+
+    function onAccept() {
+      persistConfAck();
+      close();
+    }
+
+    function onDeny() {
+      // Revoke session and reload to the login screen.
+      try {
+        sessionStorage.removeItem(AUTH_KEY);
+        sessionStorage.removeItem(CONF_ACK_KEY);
+      } catch (_) {}
+      window.location.reload();
+    }
+
+    function onKey(e) {
+      if (e.key === "Escape") {
+        // Treat Escape as "deny" — safer default for confidential content.
+        e.preventDefault();
+        onDeny();
+      } else if (e.key === "Enter" && document.activeElement === acceptBtn) {
+        e.preventDefault();
+        onAccept();
+      }
+    }
+
+    acceptBtn.addEventListener("click", onAccept);
+    denyBtn.addEventListener("click", onDeny);
+    window.addEventListener("keydown", onKey);
   }
 
   function initAuthGate() {
