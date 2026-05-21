@@ -34,23 +34,17 @@
       aria-modal="true"
       aria-labelledby="auth-title"
     >
-      <div class="jv-auth-bg" aria-hidden="true"></div>
       <form id="auth-form" class="jv-auth-card" autocomplete="on" novalidate>
-        <div class="jv-auth-header">
-          <span class="ds-badge ds-badge-invert">Confidencial</span>
-          <span class="ds-eyebrow">
-            <span class="ds-eyebrow-dot"></span>
-            Acesso restrito
-          </span>
+        <div class="jv-auth-brand">
+          <img
+            src="./assets/mises-logo.png"
+            alt="Mises Pagamentos"
+            width="1563"
+            height="219"
+          />
         </div>
 
-        <div class="jv-auth-titles">
-          <h1 id="auth-title" class="jv-auth-title">Joint Venture Intention</h1>
-          <p class="jv-auth-subtitle">
-            Este documento é confidencial e dirigido exclusivamente às partes envolvidas. Acesse com as
-            credenciais fornecidas pela Mises Pagamentos.
-          </p>
-        </div>
+        <span class="ds-badge ds-badge-invert jv-auth-badge">Confidencial</span>
 
         <div class="jv-auth-fields">
           <label class="jv-auth-field" for="auth-email">
@@ -64,7 +58,6 @@
               spellcheck="false"
               autocapitalize="off"
               inputmode="email"
-              placeholder="seu@email.com"
             />
           </label>
 
@@ -76,24 +69,18 @@
               name="password"
               required
               autocomplete="current-password"
-              placeholder="••••••••••••"
             />
           </label>
         </div>
 
         <div id="auth-error" class="jv-auth-error" hidden role="alert">
-          Credenciais inválidas. Verifique e-mail e senha.
+          Credenciais inválidas.
         </div>
 
-        <button type="submit" class="ds-btn ds-btn-primary jv-auth-submit" id="auth-submit">
-          <span class="jv-auth-submit-label">Acessar documento</span>
+        <button type="submit" class="jv-auth-submit" id="auth-submit">
+          <span class="jv-auth-submit-label">Acessar</span>
           <span class="jv-auth-submit-spinner" aria-hidden="true"></span>
         </button>
-
-        <p class="jv-auth-footnote">
-          Mises Pagamentos LTDA · CNPJ 63.215.684/0001-69<br />
-          Documento sob NDA. Distribuição não autorizada é proibida.
-        </p>
       </form>
     </div>
 
@@ -101,7 +88,7 @@
       <!-- =========================================================
            2. HERO / CAPA
       ========================================================= -->
-      <section id="top" class="jv-hero">
+      <section id="top" class="jv-hero jv-section-dark">
         <div class="ds-container jv-hero-inner">
           <div class="ds-flex ds-items-center ds-gap-3 jv-hero-meta">
             <span class="ds-badge-invert ds-badge">Confidencial</span>
